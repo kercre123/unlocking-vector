@@ -60,7 +60,11 @@ Glorified production bots.
 
 ## Whiskey
 
-Whiskey development started after Vector. Basically just a Vector which has two extra [VL53L1X](https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html) sensors on each side of the camera.
+Whiskey development started after Vector. Basically just a Vector which has two extra [VL53L1X](https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html) sensors on each side of the camera. The distance sensor on the body is missing.
+
+Modern Vector software can initialize the extra sensors, but can't use them for navigation. It was never implemented. So, Whiskeys tend to bump into stuff often.
+
+It might be possible to add the sensor back to the body, but I haven't seen anyone succeed with that.
 
 Their CPUs are unlocked.
 
