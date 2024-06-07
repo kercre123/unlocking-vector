@@ -12,7 +12,7 @@ The APQ8009 is a quad-core Cortex-A7. It is limited to 533 MHz by default, but c
 
 Vector runs embedded Linux. His partition table is similar to an Android phone. He has an SBL and ABOOT. The ABOOT figures out the active partition slot (three options: system_a, system_b, or recoveryfs (known as f)) and loads the boot partition. The boot partition contains a basic ramfs and sets up dm-verity and does a POST test (in a program called `rampost`). On dev bots, `rampost` also shows a message on screen saying "PROPERTY OF ANKI, CONFIDENTIAL TEST UNIT, IF FOUND, CONTACT security@anki.com".
 
-Description of his programs: (binaries.md)[/binaries.md]
+Description of his programs: [binaries.md](/binaries.md)
 
 ## How Vector is secured
 
