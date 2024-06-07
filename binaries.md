@@ -1,0 +1,5 @@
+# Vector's programs
+
+There are many binaries all located in a /anki folder in his filesystem which are run by `systemd` and work together to create the Vector experience. `vic-robot` communicates with the hardware and provides an API for other programs to move the motors and get data from the sensors. `vic-engine` handles vision processing, sensor input, and behaviors. `vic-anim` handles playing animations and "Hey Vector" recognition. `vic-cloud` handles communication with the cloud. `vic-gateway` handles SDK communication. `vic-switchboard` handles Bluetooth communication and can interface with `vic-gateway`. There are also some crash and log uploader programs. `update-engine` is a Python script which handles OTA updates.
+
+vic-engine, vic-anim, vic-robot, vic-switchboard, and the log uploader are written in C++. vic-cloud and vic-gateway are written in Go. update-engine is written in Python.
