@@ -59,6 +59,8 @@ The only way to unlock a Vector is to replace the CPU and change out a couple pa
 
 If you can find a phone repair place which would be willing to do it, it is worth a shot.
 
+More detailed guide: [replacement_guide.md](/replacement_guide.md)
+
 You can buy a new APQ8009 on AliExpress for like $5. You can also get a stencil for cheap. An MSM8909 one works.
 
 Hook up to the USB pads at the bottom right of the back side of the board. Note: there are pads for a micro-USB header. These are backwards and a normal port would not work for this. You have to get a special upside-down port.
