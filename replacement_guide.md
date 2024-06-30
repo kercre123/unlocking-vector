@@ -1,24 +1,25 @@
-# Vector CPU Replacement Guide
+# Vector CPU Replacement Guide (for unlocking)
 
 1. Source an [APQ8009 CPU](https://www.aliexpress.us/item/3256803378630939.html), an [MSM8909 stencil](https://www.aliexpress.us/item/2251832705095349.html?gatewayAdapt=glo2usa4itemAdapt) (same pinout), then find someone who is willing to perform such a delicate BGA operation (phone repair shops, usually). Make sure they have this guide.
 
-2. Have the technician perform the actual replacement. ****TELL THEM TO NOT BOOT UP THE BOARD TO CHECK IF IT WAS SUCCESSFUL UNTIL YOU HAVE WIRED IT UP CORRECTLY****
+2. Peel off the graphite sheet and perform the replacement. It is recommended to flip the chip up towards the big 4-pin connector as to not knock off any components under the CPU. **DO NOT BOOT THE BOARD UP TO CHECK IF YOU WERE SUCCESSFUL UNTIL EVERYTHING YOU HAVE SHORTED F_USB TO ~2V**
+   
+    -   The reason for this is the `sec` partition. Without F_USB shorted to 2V, the CPU will read this partition at bootup and will fuse-lock itself.
 
-    -   The reason for this is the `sec` partition. The CPU will read this partition at bootup and will fuse-lock itself.
-
-3. Hook up to the USB pads and connect F_USB to a ~2V source as shown in the image.
+4. Hook up to the USB pads and connect F_USB to a ~2V source as shown in the image.
 
     -   D_P = D+ = Data Positive (usually a green wire)
     -   D_N = D- = Data Negative (usually a white wire)
     -   GND = Ground (black) (all the gold surfaces around the CPU and eMCP are GND as well)
     -   F_USB = QDL Force Pin. This should be hooked up to an ~2V source. The image shows where you can get a 2V source.
+    -   You don't have to do anything with USB_ID.
     -   The leftmost pin on the "spine" (4-pin) connector is where you can connect the USB's 5V. (blue, in the image)
 
 ![wire guide](/wires.jpg)
 
 4. Get the software set up.
-    -   If the technician is comfortable with QDL/EDL, they can use whatever software they want. I just like this tool.
     -   Set up [bkerler/edl](https://github.com/bkerler/edl?tab=readme-ov-file#grab-files-and-install)
+        -   If you have experience with QDL/EDL, you can use whatever software they want. I just like this tool.
         -   A Linux OS is very much recommended. Make sure you follow the instructions carefully so that the submodules are fetched.
     -   Put ankidev-nosigning.mbn (located in the root of this repo) in the same folder as the `edl` script.
 
@@ -32,7 +33,8 @@ python3 edl e sec
 python3 edl w aboot ankidev-nosigning.mbn
 ```
 
-    -   That is all that needs to be done. The new `aboot` includes a new command line flag (`anki.dev`) which will tell recovery to allow for the download of dev OTAs.
+-   If you are using a different tool: erase the `sec` partition and flash the `aboot` partition with ankidev-nosigning.mbn.
+-   That is all that needs to be done. The new `aboot` includes a new command line flag (`anki.dev`) which will tell recovery to allow for the download of dev OTAs.
 
 7. If those were successful, you may disconenct the board from your computer and desolder the wires.
 
